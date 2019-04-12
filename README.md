@@ -1,0 +1,2 @@
+# Go Challenge for CodeNation
+
