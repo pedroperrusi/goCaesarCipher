@@ -22,13 +22,14 @@ func getJSON(url string, target interface{}) error {
 
 // ProblemCase : JSON description of the problem case to be solved.
 type ProblemCase struct {
-	NumeroCasas         int
-	Token               string
-	Cifrado             string
-	Decifrado           string
-	ResumoCriptografado string
+	NumeroCasas         int    `json:"numero_casas"`
+	Token               string `json:"token"`
+	Cifrado             string `json:"cifrado"`
+	Decifrado           string `json:"decifrado"`
+	ResumoCriptografado string `json:"resumo_criptografado"`
 }
 
+// readPloblemCaseJSON : prints all data types from ProblemCase structure
 func readPloblemCaseJSON(problemJSON ProblemCase) {
 	// Read all JSON
 	print("NumeroCasas: ")

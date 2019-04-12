@@ -8,8 +8,5 @@ func main() {
 	problemJSON := ProblemCase{}
 	getJSON(myURL, &problemJSON)
 
-	// numero_casas is harcoded as its right value :(
-	problemJSON.NumeroCasas = 1
-
 	readPloblemCaseJSON(problemJSON)
 }
