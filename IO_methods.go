@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -18,6 +19,12 @@ func getJSON(url string, target interface{}) error {
 	defer r.Body.Close()
 
 	return json.NewDecoder(r.Body).Decode(target)
+}
+
+// Write a structure type to a JSON file
+func writeJSON(filename string, target interface{}) {
+	targetJSON, _ := json.Marshal(target)
+	ioutil.WriteFile(filename, targetJSON, 0644)
 }
 
 // ProblemCase : JSON description of the problem case to be solved.
