@@ -11,12 +11,22 @@ func TestReplace(t *testing.T) {
 	}
 }
 
-func TestCesarCypher(t *testing.T) {
+func TestCesarCypherInbound(t *testing.T) {
 	str := "cccc"
 	var cases uint8 = 2
 	dst := invCesarCypher(cases, str)
 	expected := "aaaa"
 	if dst != expected {
 		t.Errorf("Invert Cesar Cypher is incorrect, got: %s, want: %s.", dst, expected)
+	}
+}
+
+func TestCesarCypherUpperCases(t *testing.T) {
+	str := "CcCc"
+	var cases uint8 = 2
+	dst := invCesarCypher(cases, str)
+	expected := "aaaa"
+	if dst != expected {
+		t.Errorf("Invert Cesar Cypher Uppercase is incorrect, got: %s, want: %s.", dst, expected)
 	}
 }

@@ -11,7 +11,7 @@ func invCesarCypher(nCases uint8, src string) string {
 	var dst = strings.ToLower(src)
 
 	for i := 0; i < len(dst); i++ {
-		if src[i] >= 'a' && src[i] <= 'z' {
+		if dst[i] >= 'a' && dst[i] <= 'z' {
 			dst = replaceAtIndex(dst, rune(dst[i]-nCases), i)
 		}
 	}
