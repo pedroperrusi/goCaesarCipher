@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"encoding/hex"
+	"fmt"
+)
 
 // Read from file hardcoded condition
-const readFromWeb = false
+const readFromWeb = true
 
 // Post to web hardcoded condition
 const postToWeb = true
@@ -39,7 +42,7 @@ func main() {
 	data.Decifrado = invCesarCypher(data.NumeroCasas, data.Cifrado)
 
 	// Generate hash resume
-	data.ResumoCriptografado = stringToSHA1(data.Decifrado)
+	data.ResumoCriptografado = hex.EncodeToString(stringToSHA1(data.Decifrado))
 
 	println("\nProblem case solved:\n")
 	readPloblemCaseJSON(data)
@@ -47,7 +50,9 @@ func main() {
 	writeJSON(outFileName, data)
 
 	// Send answer.json by POST
-	postFile(outFileName, targetURL)
+	if postToWeb {
+		postFile(outFileName, targetURL)
+	}
 }
 
 // ProblemCase : JSON description of the problem case to be solved.
@@ -56,7 +61,7 @@ type ProblemCase struct {
 	Token               string `json:"token"`
 	Cifrado             string `json:"cifrado"`
 	Decifrado           string `json:"decifrado"`
-	ResumoCriptografado []byte `json:"resumo_criptografado"`
+	ResumoCriptografado string `json:"resumo_criptografico"`
 }
 
 // readPloblemCaseJSON : prints all data types from ProblemCase structure
@@ -75,5 +80,5 @@ func readPloblemCaseJSON(problemJSON ProblemCase) {
 	println(problemJSON.Decifrado)
 
 	print("ResumoCriptografado: ")
-	fmt.Printf("%x\n", problemJSON.ResumoCriptografado)
+	fmt.Printf("%s\n", problemJSON.ResumoCriptografado)
 }
