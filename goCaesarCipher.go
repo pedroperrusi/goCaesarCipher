@@ -12,7 +12,7 @@ const readFromWeb = true
 const postToWeb = true
 
 // HTTPS address of question.json to be read
-const myURL = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=b566cecbba033c449a449a8d3e16fb69e10bddcc"
+const sourceURL = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=b566cecbba033c449a449a8d3e16fb69e10bddcc"
 
 // HTTPS target address for the answer.json to be sent
 const targetURL = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=b566cecbba033c449a449a8d3e16fb69e10bddcc"
@@ -29,7 +29,7 @@ func main() {
 
 	if readFromWeb {
 		// Read description from HTTPS
-		httpsGetJSON(myURL, &data)
+		httpsGetJSON(sourceURL, &data)
 	} else {
 		// Read description from file
 		readJSON(inFileName, &data)
