@@ -27,13 +27,14 @@ func main() {
 	readPloblemCaseJSON(data)
 
 	// Perform Cesar Cypher
+	data.Decifrado = invCesarCypher(data.NumeroCasas, data.Cifrado)
 
 	writeJSON(outFileName, data)
 }
 
 // ProblemCase : JSON description of the problem case to be solved.
 type ProblemCase struct {
-	NumeroCasas         int    `json:"numero_casas"`
+	NumeroCasas         uint8  `json:"numero_casas"`
 	Token               string `json:"token"`
 	Cifrado             string `json:"cifrado"`
 	Decifrado           string `json:"decifrado"`
