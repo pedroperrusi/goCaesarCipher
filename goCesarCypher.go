@@ -5,8 +5,14 @@ import "fmt"
 // Read from file hardcoded condition
 const readFromWeb = false
 
-// HTTPS address of my JSON file
+// Post to web hardcoded condition
+const postToWeb = true
+
+// HTTPS address of question.json to be read
 const myURL = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=b566cecbba033c449a449a8d3e16fb69e10bddcc"
+
+// HTTPS target address for the answer.json to be sent
+const targetURL = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=b566cecbba033c449a449a8d3e16fb69e10bddcc"
 
 // Input file name
 const inFileName = "data/question.json"
@@ -39,6 +45,9 @@ func main() {
 	readPloblemCaseJSON(data)
 
 	writeJSON(outFileName, data)
+
+	// Send answer.json by POST
+	postFile(outFileName, targetURL)
 }
 
 // ProblemCase : JSON description of the problem case to be solved.
