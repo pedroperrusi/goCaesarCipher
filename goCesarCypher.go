@@ -14,19 +14,21 @@ const outFileName = "data/answer.json"
 
 func main() {
 	// Problem Description
-	description := ProblemCase{}
+	data := ProblemCase{}
 
 	if readFromWeb {
 		// Read description from HTTPS
-		httpsGetJSON(myURL, &description)
+		httpsGetJSON(myURL, &data)
 	} else {
 		// Read description from file
-		readJSON(inFileName, &description)
+		readJSON(inFileName, &data)
 	}
 
-	readPloblemCaseJSON(description)
+	readPloblemCaseJSON(data)
 
-	writeJSON(outFileName, description)
+	// Perform Cesar Cypher
+
+	writeJSON(outFileName, data)
 }
 
 // ProblemCase : JSON description of the problem case to be solved.
