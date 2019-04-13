@@ -8,7 +8,11 @@ func replaceAtIndex(str string, replacement rune, index int) string {
 }
 
 func unencryptChar(nCases uint8, char uint8) rune {
-	return rune(char - nCases)
+	var newChar = rune(char - nCases)
+	if newChar < 'a' {
+		newChar += 'z' - 'a' + 1
+	}
+	return newChar
 }
 
 func invCesarCypher(nCases uint8, src string) string {

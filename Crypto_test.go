@@ -30,3 +30,13 @@ func TestCesarCypherUpperCases(t *testing.T) {
 		t.Errorf("Invert Cesar Cypher Uppercase is incorrect, got: %s, want: %s.", dst, expected)
 	}
 }
+
+func TestCesarCypherOutbound(t *testing.T) {
+	str := "aaaa"
+	var cases uint8 = 2
+	dst := invCesarCypher(cases, str)
+	expected := "yyyy"
+	if dst != expected {
+		t.Errorf("Invert Cesar Cypher Outbounds is incorrect, got: %s, want: %s.", dst, expected)
+	}
+}
