@@ -40,3 +40,13 @@ func TestCesarCypherOutbound(t *testing.T) {
 		t.Errorf("Invert Cesar Cypher Outbounds is incorrect, got: %s, want: %s.", dst, expected)
 	}
 }
+
+func TestCesarCypherIgoredCharacters(t *testing.T) {
+	str := "cc.cc"
+	var cases uint8 = 2
+	dst := invCesarCypher(cases, str)
+	expected := "aa.aa"
+	if dst != expected {
+		t.Errorf("Invert Cesar Cypher Ignored characters is incorrect, got: %s, want: %s.", dst, expected)
+	}
+}
