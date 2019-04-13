@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Read from file hardcoded condition
 const readFromWeb = false
 
@@ -24,10 +26,17 @@ func main() {
 		readJSON(inFileName, &data)
 	}
 
+	println("\nProblem case read:\n")
 	readPloblemCaseJSON(data)
 
 	// Perform Cesar Cypher
 	data.Decifrado = invCesarCypher(data.NumeroCasas, data.Cifrado)
+
+	// Generate hash resume
+	data.ResumoCriptografado = stringToSHA1(data.Decifrado)
+
+	println("\nProblem case solved:\n")
+	readPloblemCaseJSON(data)
 
 	writeJSON(outFileName, data)
 }
@@ -38,7 +47,7 @@ type ProblemCase struct {
 	Token               string `json:"token"`
 	Cifrado             string `json:"cifrado"`
 	Decifrado           string `json:"decifrado"`
-	ResumoCriptografado string `json:"resumo_criptografado"`
+	ResumoCriptografado []byte `json:"resumo_criptografado"`
 }
 
 // readPloblemCaseJSON : prints all data types from ProblemCase structure
@@ -57,5 +66,5 @@ func readPloblemCaseJSON(problemJSON ProblemCase) {
 	println(problemJSON.Decifrado)
 
 	print("ResumoCriptografado: ")
-	println(problemJSON.ResumoCriptografado)
+	fmt.Printf("%x\n", problemJSON.ResumoCriptografado)
 }

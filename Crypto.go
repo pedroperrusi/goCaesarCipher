@@ -1,12 +1,16 @@
 package main
 
-import "strings"
+import (
+	"crypto/sha1"
+	"strings"
+)
 
 // replaceAtIndex : https://stackoverflow.com/questions/24893624/how-to-replace-a-letter-at-a-specific-index-in-a-string-in-go
 func replaceAtIndex(str string, replacement rune, index int) string {
 	return str[:index] + string(replacement) + str[index+1:]
 }
 
+// Unencript a single char accordingly to Cesar Cypher
 func unencryptChar(nCases uint8, char uint8) rune {
 	var newChar = rune(char - nCases)
 	if newChar < 'a' {
@@ -15,6 +19,7 @@ func unencryptChar(nCases uint8, char uint8) rune {
 	return newChar
 }
 
+// Performs Cesar Cypher to a String
 func invCesarCypher(nCases uint8, src string) string {
 	var dst = strings.ToLower(src)
 
@@ -25,4 +30,11 @@ func invCesarCypher(nCases uint8, src string) string {
 		}
 	}
 	return dst
+}
+
+// Creates a SHA1 hash of a string
+func stringToSHA1(src string) []byte {
+	h := sha1.New()
+	h.Write([]byte(src))
+	return h.Sum(nil)
 }
